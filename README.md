@@ -14,14 +14,14 @@ en Excel et en PDF.
 
 ## Stack technique
 
-- PHP 8.1+, Laravel 10
+- PHP 8.2+, Laravel 12
 - MySQL
 - maatwebsite/excel, barryvdh/laravel-dompdf
 - Bootstrap, Font Awesome
 
 ## Installation
 
-Prérequis : PHP 8.1+, Composer 2, MySQL.
+Prérequis : PHP 8.2+, Composer 2, MySQL.
 
 ```bash
 git clone https://github.com/kylaodou/projet-economie-L2.git

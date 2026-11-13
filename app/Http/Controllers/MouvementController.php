@@ -24,11 +24,12 @@ class MouvementController extends Controller
     public function traitement(Request $request)
     {
         $data = $request->validate([
+            'dates' => 'required|array|min:1',
             'dates.*' => 'required|date',
-            'libelles.*' => 'required|string',
+            'libelles.*' => 'required|string|max:255',
             'comptes.*' => 'required|numeric',
-            'types.*' => 'required|string',
-            'montant.*' => 'required|numeric',
+            'types.*' => 'required|string|in:crédité,débité,Crédité,Débité',
+            'montant.*' => 'required|numeric|min:0',
         ]);
 
         foreach ($data['dates'] as $index => $date) {
@@ -38,7 +39,8 @@ class MouvementController extends Controller
                 'libelle' => $data['libelles'][$index],
                 'compte' => $data['comptes'][$index],
                 'montant' => $data['montant'][$index],
-                'type' => $data['types'][$index],
+                // Valeurs de la colonne ENUM : 'crédité' ou 'débité'
+                'type' => mb_strtolower($data['types'][$index]),
             ]);
         }
 
